@@ -27,3 +27,4 @@ class Lecturer(Faculty):  # Concrete class for lecturers
 class TA(Faculty):  # Concrete class for teaching assistants
     def get_responsibilities(self):  # override to specify TA responsibilities
         return "Assist in teaching, grade assignments, hold office hours"
+
