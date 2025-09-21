@@ -35,7 +35,7 @@ class DemoScraper:
             if not html:
                 continue
             soup = BeautifulSoup(html, 'html.parser')
-            products = soup.select_one('.col-sm-4.col-lg-4.col-md-4')
+            products = soup.select('.col-sm-4.col-lg-4.col-md-4')
             for product in products:  # Extract product details
                 title = product.select_one('.title').get('title', '').strip()
                 price = product.select_one('.price').text.replace('$', '').strip()
