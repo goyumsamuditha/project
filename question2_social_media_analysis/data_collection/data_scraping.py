@@ -24,6 +24,7 @@ class BookScraper:
             try:
                 response = self.session.get(url)
                 response.raise_for_status()
+                response.encoding = "utf-8"
                 return BeautifulSoup(response.text, "html.parser")
             except requests.RequestException as e: # Handle request exceptions
                 logging.error(f"Error fetching {url}: {e}. Attempt {attempt + 1} of {self.max_retries}.")
