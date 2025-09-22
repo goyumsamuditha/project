@@ -9,7 +9,7 @@ class Student(Person):  # Abstract base class for students
 		self.__gpa = 0.0  # private attribute
 
 	def enroll_course(self, course):  # enroll in a course if prerequisites are met and capacity allows
-		if course.check_prerequisites(self.courses):    # check if prerequisites are met
+		if course.check_prerequisites(self):    # check if prerequisites are met
 			if len(course.enrolled_students) < course.limit:  # check capacity
 				self.courses.append(course.code)
 				course.enrolled_students.append(self)
