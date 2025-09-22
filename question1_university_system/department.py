@@ -1,13 +1,14 @@
 class Course: # Represents a course in the university
-    def __init__(self, code, title, credits, prerequisites=None): # prerequisites is a list of course codes
+    def __init__(self, code, title, credits, prerequisites=None,limit=30): # prerequisites is a list of course codes
         self.code = code
         self.title = title
         self.credits = credits
         self.enrolled_students = [] # List of student IDs
         self.prerequisites = prerequisites if prerequisites else [] # List of prerequisite course codes
+        self.limit = limit
 
     def check_prerequisites(self, student): # Check if a student meets the prerequisites
-        return all(prereq in student.completed_courses for prereq in self.prerequisites)
+        return all(prereq in student.courses for prereq in self.prerequisites)
 
 
 class Department: # Represents a department in the university
