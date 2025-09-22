@@ -25,7 +25,7 @@ def main():
     """Main function to run scrapers and save data."""
     # Books Scraper
     books_scraper = BookScraper()
-    books_scraper.scrape(pages=5)
+    books_scraper.scrape(pages=50)
     save_to_csv('books_data.csv', books_scraper.books)
 
     # Demo Scraper
