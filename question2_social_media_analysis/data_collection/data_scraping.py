@@ -5,6 +5,9 @@ implements basic error handling, and saves results in CSV/JSON format.
 import time
 import logging
 import requests
+import re
+
+from urllib.parse import urljoin
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
 
@@ -38,11 +41,44 @@ class BookScraper:
             if not html:
                 continue
 
-            books = html.find_all("article", class_="product_pod") # Find all book entries
-            for book in books: # Extract book details
+            books = html.find_all("article", class_="product_pod")
+            for book in books:
                 title = book.h3.a["title"]
-                price = float(book.find("p", class_="price_color").text.replace("£", "").strip())
-                rating = book.p["class"][1]
-                self.books.append({"title": title, "price": price, "rating": rating})
 
-            time.sleep(self.delay) # Respectful delay between page requests
+                # Clean price text
+                price_text = book.find("p", class_="price_color").text
+                price_clean = re.sub(r"[^\d.]", "", price_text)
+                price = float(price_clean)
+
+                rating = book.p["class"][1]
+
+                # Build absolute book URL safely
+                relative_url = book.h3.a["href"]
+                book_url = urljoin(self.base_url + "catalogue/", relative_url)
+
+                # Fetch category from detail page
+                category, availability = "Unknown", "Unknown"
+                book_html = self.fetch_page(book_url)
+                if book_html:
+                    breadcrumb = book_html.select("ul.breadcrumb li a")
+                    if len(breadcrumb) >= 3:
+                        category = breadcrumb[2].text.strip()
+
+                    availability = book_html.select_one("p.availability")
+                    if availability:
+                        availability = availability.text.strip()
+
+                    description = book_html.select_one("#product_description ~ p")
+                    if description:
+                        description = description.text.strip()
+
+                        # Append book data to the list
+                        self.books.append({
+                            "title": title,
+                            "price": price,
+                            "rating": rating,
+                            "category": category,
+                            "availability": availability,
+                            "description": description
+                        })
+                time.sleep(self.delay)  # Respectful delay between requests
