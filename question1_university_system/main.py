@@ -1,6 +1,6 @@
 # main.py
 from person import Staff
-from student import UndergraduateStudent, GraduateStudent
+from student import Undergraduate, Graduate
 from faculty import Professor, Lecturer, TA
 from department import Department, Course
 
@@ -28,19 +28,29 @@ def main():
 
 
     # Create students
-    student_s001 = UndergraduateStudent("Mike Ross", "CS001", "CS") # Undergraduate student in CS
-    student_s002 = GraduateStudent("Rachel Zane", "CS002", "CS") # Graduate student in CS
+    student_s001 = Undergraduate("Mihin Jayathilake", "CS001", "CS") # Undergraduate student in CS
+    student_s002 = Graduate("Dilini Perera", "CS002", "CS") # Graduate student in CS
 
+    print("\n--- Course Enrollment ---")
     # Enroll students in courses
     student_s001.enroll_course(course_c01) # should succeed
     student_s001.enroll_course(course_c02)  # prerequisite check
 
     student_s002.enroll_course(course_c02)  # should fail due to missing prerequisite
 
-    # Set GPA and show academic status
-    student_s001.set_gpa(3.8) # Set GPA for undergraduate student
-    print(f"{student_s001.name}: GPA: {student_s001.get_gpa()}, Status: {student_s001.get_academic_status()}") # Show academic status
 
+    # Set GPA
+    student_s001.set_gpa(3.8)
+    student_s002.set_gpa(2.0)
+
+
+    # Show academic status
+    print("\n--- Academic Status ---")
+    print(f"{student_s001.name}: GPA: {student_s001.calculate_gpa()}, Status: {student_s001.get_academic_status()}") # Show academic status
+    print(f"{student_s002.name}: GPA: {student_s002.calculate_gpa()}, Status: {student_s002.get_academic_status()}") # Show academic status
+
+
+    print("\n--- Responsibilities ---")
     # Show responsibilities
     people = [lecturer_l001,lecturer_l002, student_s001, student_s002, teaching_assistant_ta001, staff_st001] # List of all people
     for person in people:
