@@ -5,6 +5,8 @@ import logging
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 
 class DemoScraper:
     """Scraper for demo e-commerce site (webscraper.io test site)."""
@@ -29,17 +31,22 @@ class DemoScraper:
         logging.error(f"Failed to fetch {url} after {self.max_retries} attempts.")  # Use max_retries attribute
         return None
 
-    def scrape(self, pages: int = 2) -> None:  # Added type hint for pages
+    def scrape(self, pages: int = 50) -> None: # Added type hint for pages
+        """Scrape product data from multiple pages."""
+
         for page in range(1, pages + 1):  # Changed to 1-based indexing
             html = self._fetch_page(self.BASE_URL.format(page))
             if not html:
                 continue
             soup = BeautifulSoup(html, 'html.parser')
             products = soup.select('.col-sm-4.col-lg-4.col-md-4')
+
             for product in products:  # Extract product details
                 title = product.select_one('.title').get('title', '').strip()
                 price = product.select_one('.price').text.replace('$', '').strip()
                 description = product.select_one('.description').text.strip()
+
+
                 self.data.append({
                     'title': title,
                     'price': float(price),
