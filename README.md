@@ -1,8 +1,8 @@
 # project
 This repository related to course work of PROGRAMMING FOR DATA SCIENCE 2025.1 BATCH
-# School Management System
+# University  Management System
 
-This is an object-oriented model of a school management system implemented in Python. It demonstrates concepts like **inheritance**, **polymorphism**, and **encapsulation** to manage different entities within a university, such as **Courses**, **Departments**, **Students**, and **Faculty**.
+This is an object-oriented model of a University management system implemented in Python. It demonstrates concepts like **inheritance**, **polymorphism**, and **encapsulation** to manage different entities within a university, such as **Courses**, **Departments**, **Students**, and **Faculty**.
 
 ## Project Structure
 
