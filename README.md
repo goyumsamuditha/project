@@ -44,3 +44,82 @@ The script will demonstrate the system's functionality, including:
 * Successful and failed course enrollment attempts (due to prerequisites/capacity).
 * The calculated GPA and resulting academic status for students.
 * The specific responsibilities for each person type (Professor, Undergraduate, Staff, etc.).
+
+
+
+
+
+
+#  Data Analysis: E-commerce Data Analysis Project
+
+This project implements a **complete data pipeline** for book data — starting from **web scraping**, followed by **data cleaning**, **Exploratory Data Analysis (EDA)**, and **data visualization** to uncover actionable insights.
+
+---
+
+##  Features
+
+- **Web Scraping:**  
+  Scrapes book details such as title, price, rating, category, and availability from a target website.
+
+- **Modular Design:**  
+  Includes separate modules for different scraping tasks: `BookScraper`, `DemoScraper`, and `RSSItem`.
+
+- **Data Cleaning:**  
+  Notebook to handle missing values, format data types, and prepare the dataset for analysis.
+
+- **Exploratory Data Analysis (EDA):**  
+  Notebook to analyze book prices, ratings, and availability, and generate statistical summaries.
+
+- **Data Visualization:**  
+  Notebook to create informative plots — histograms, bar charts, scatter plots — for key variables.
+
+---
+
+##  Project Structure
+
+| File/Directory           | Description |
+|------------------------|-------------|
+| **main.py**            | Main execution script. Runs all scrapers and saves raw data into CSV files. |
+| **data_scraping.py**   | Contains the `BookScraper` class for scraping book data, including fetching page details. |
+| **clean_books_data.ipynb** | Jupyter Notebook for cleaning and preprocessing `books_data.csv`. Saves cleaned data to `cleaned_books_data.csv`. |
+| **EDA_Analysis.ipynb** | Jupyter Notebook for exploratory data analysis (EDA) on cleaned data. |
+| **plots_vsulization.ipynb** | Jupyter Notebook for visualizing the cleaned data. |
+| **books_data.csv**     | Output: Raw data scraped from the book website. |
+| **cleaned_books_data.csv** | Output: Cleaned and preprocessed book dataset. |
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+- **Python 3.9** installed on your system  
+
+## How to Run
+
+### 1. Web Scraping
+Execute the main script to run the scrapers and generate the raw data CSV files (`books_data.csv`, `demo_data.csv`).
+
+```bash
+python main.py
+```
+(The BookScraper in main.py is configured to scrape 50 pages by default.)
+
+## Data Cleaning and Analysis
+
+After scraping the raw data, proceed with the data cleaning and analysis steps by opening the Jupyter notebooks in order:
+
+### Clean the Data
+Open and run all cells in the `clean_books_data.ipynb` notebook.  
+This step generates the `cleaned_books_data.csv` file.
+
+```bash
+jupyter notebook clean_books_data.ipynb
+```
+### Perform EDA 
+
+Open and run all cells in the EDA_Analysis.ipynb notebook.
+
+### Visualize Data
+
+Open and run all cells in the plots_vsulization.ipynb notebook to see the data visualizations.
+
