@@ -1,0 +1,13 @@
+pandas~=2.3.2
+numpy~=2.3.3
+scipy~=1.16.2
+scikit-learn~=1.7.2
+matplotlib~=3.10.6
+seaborn~=0.13.2
+requests~=2.32.4
+bs4~=0.0.2
+beautifulsoup4~=4.13.5
+# School Management System requirement.txt
+# This project uses only standard Python libraries,
+# No external dependencies are required.
+# but it is designed for Python 3.9+
